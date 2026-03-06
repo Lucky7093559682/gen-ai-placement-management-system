@@ -79,14 +79,25 @@ if (process.env.FRONTEND_URLS) {
 
 const corsOptions = {
   origin: (origin, callback) => {
+    const normalizedOrigin = (origin || '').trim().replace(/\/+$/, '');
+
     // Allow server-to-server calls and tools without Origin header
-    if (!origin) {
+    if (!normalizedOrigin) {
       return callback(null, true);
     }
-    if (allowedOrigins.has(origin) || /\.vercel\.app$/i.test(origin)) {
+
+    let isVercelApp = false;
+    try {
+      const hostname = new URL(normalizedOrigin).hostname;
+      isVercelApp = /\.vercel\.app$/i.test(hostname);
+    } catch (_error) {
+      isVercelApp = /\.vercel\.app$/i.test(normalizedOrigin);
+    }
+
+    if (allowedOrigins.has(normalizedOrigin) || isVercelApp) {
       return callback(null, true);
     }
-    return callback(new Error(`CORS blocked for origin: ${origin}`));
+    return callback(new Error(`CORS blocked for origin: ${normalizedOrigin}`));
   },
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
@@ -97,7 +108,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 // Handle preflight requests explicitly
-app.options('*', cors(corsOptions));
+app.options(/.*/, cors(corsOptions));
 
 // 4. Middleware
 app.use(express.json({ limit: '10mb' }));
