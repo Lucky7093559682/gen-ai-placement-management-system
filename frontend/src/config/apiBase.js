@@ -1,4 +1,4 @@
-const DEFAULT_PROD_API_URL = "https://gen-ai-placement-management-system.onrender.com/api";
+const DEFAULT_PROD_API_URL = "https://gen-ai-placement-management-syste.onrender.com/api";
 const DEFAULT_DEV_API_URL = "http://localhost:5001/api";
 
 const normalizeUrl = (url) => (url || "").trim().replace(/\/+$/, "");
