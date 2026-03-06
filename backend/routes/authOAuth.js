@@ -1,5 +1,6 @@
 import express from 'express';
 import jwt from 'jsonwebtoken';
+import mongoose from 'mongoose';
 import User from '../models/User.js';
 import Student from '../models/Student.js';
 const router = express.Router();
@@ -113,7 +114,41 @@ const generateToken = (id, role) =>
     { expiresIn: process.env.JWT_EXPIRE || '7d' }
   );
 
+const oauthMemoryUsers = new Map();
+let oauthMemoryUserCounter = 1;
+
+const isMongoReady = () => mongoose?.connection?.readyState === 1;
+
 const getOrCreateOAuthUser = async ({ email, name, provider, providerId, avatar }) => {
+  if (!isMongoReady()) {
+    const existingMemoryUser = oauthMemoryUsers.get(email);
+    if (existingMemoryUser) {
+      existingMemoryUser.oauthProviders = existingMemoryUser.oauthProviders || {};
+      existingMemoryUser.oauthProviders[provider] = providerId;
+      if (avatar && !existingMemoryUser.avatar) {
+        existingMemoryUser.avatar = avatar;
+      }
+      oauthMemoryUsers.set(email, existingMemoryUser);
+      return existingMemoryUser;
+    }
+
+    const memoryUser = {
+      _id: `oauth-memory-${oauthMemoryUserCounter++}`,
+      id: null,
+      name,
+      email,
+      role: 'student',
+      avatar,
+      oauthProviders: {
+        [provider]: providerId
+      },
+      otpVerified: true
+    };
+    memoryUser.id = memoryUser._id;
+    oauthMemoryUsers.set(email, memoryUser);
+    return memoryUser;
+  }
+
   let user = await User.findOne({ email });
 
   if (user) {
