@@ -32,9 +32,12 @@ const strongPasswordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{
 const OTP_EXPIRY_MS = 5 * 60 * 1000;
 const LOGIN_LOCK_MINUTES = 10;
 const MAX_LOGIN_ATTEMPTS = 5;
+const ALLOW_PROD_OTP_FALLBACK =
+  String(process.env.ALLOW_PROD_OTP_FALLBACK ?? 'true').toLowerCase() === 'true';
+
 const DEV_OTP_FALLBACK =
   process.env.NODE_ENV !== 'production' ||
-  String(process.env.ALLOW_PROD_OTP_FALLBACK || '').toLowerCase() === 'true';
+  ALLOW_PROD_OTP_FALLBACK;
 
 const normalizeEmail = (email) => String(email || '').trim().toLowerCase();
 const generateOtp = () => Math.floor(100000 + Math.random() * 900000).toString();
