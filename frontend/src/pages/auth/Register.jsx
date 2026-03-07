@@ -4,6 +4,7 @@ import { Mail, Lock, User, Phone, X, CheckCircle, ArrowRight, Sun, Moon, Eye, Ey
 import { authAPI, oauthAPI } from "../../services/api";
 import { useAuth } from "../../contexts/AuthContext";
 import { BACKEND_BASE_URL } from "../../config/apiBase";
+import { API_BASE_URL } from "../../config/apiBase";
 
 const roleImages = {
   student: "https://img.freepik.com/premium-photo/graduation-boy-girl-class-room_1036975-32053.jpg",
@@ -540,7 +541,7 @@ export default function Register() {
               <div className="w-64 h-72 rounded-xl overflow-hidden shadow-2xl">
                 <img 
                   src={roleImages[role] && roleImages[role].startsWith('/uploads/')
-                    ? `${process.env.REACT_APP_API_BASE_URL || import.meta.env.VITE_BACKEND_URL}${roleImages[role]}`
+                    ? `${API_BASE_URL.replace(/\/api\/?$/, '')}${roleImages[role]}`
                     : roleImages[role]}
                   alt={`${role} role`}
                   className="w-full h-full object-cover"
