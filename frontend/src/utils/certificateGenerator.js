@@ -28,30 +28,12 @@ export const generateCertificatePDF = (certData) => {
   const gray = [90, 90, 90];
 
   const drawTopLeftLogo = () => {
-    const logoX = 22;
-    const logoY = 18;
-
-    // Fixed original-style logo to keep output consistent in every PDF
-    pdf.setDrawColor(18, 18, 24);
-    pdf.setLineWidth(1.2);
-
-    // Top-left triangle
-    pdf.triangle(logoX - 6.8, logoY - 1.2, logoX + 2.4, logoY - 1.2, logoX - 1.9, logoY + 8.4, 'S');
-
-    // Main slanted triangle
-    pdf.triangle(logoX + 0.7, logoY + 8.1, logoX + 18.2, logoY - 4.2, logoX + 9.8, logoY + 16.7, 'S');
-
-    // Lower V triangle
-    pdf.triangle(logoX + 4.5, logoY + 10.1, logoX + 13.4, logoY + 10.1, logoX + 8.9, logoY + 20.0, 'S');
-
-    // Center swoosh
-    pdf.setLineWidth(1.1);
-    pdf.line(logoX + 2.0, logoY + 6.3, logoX + 1.0, logoY + 10.2);
-    pdf.line(logoX + 1.0, logoY + 10.2, logoX + 3.2, logoY + 13.2);
-    pdf.line(logoX + 3.2, logoY + 13.2, logoX + 7.7, logoY + 13.7);
-    pdf.line(logoX + 7.7, logoY + 13.7, logoX + 12.9, logoY + 11.2);
-    pdf.line(logoX + 12.9, logoY + 11.2, logoX + 11.0, logoY + 9.7);
-    pdf.line(logoX + 11.0, logoY + 9.7, logoX + 7.6, logoY + 10.4);
+    const logoX = 10;
+    const logoY = 10;
+    const logoWidth = 32;
+    const logoHeight = 32;
+    const logoUrl = 'https://static.vecteezy.com/system/resources/previews/009/634/721/non_2x/vrd-letter-logo-design-with-polygon-shape-vrd-polygon-and-cube-shape-logo-design-vrd-hexagon-logo-template-white-and-black-colors-vrd-monogram-business-and-real-estate-logo-vector.jpg';
+    pdf.addImage(logoUrl, 'JPEG', logoX, logoY, logoWidth, logoHeight);
   };
 
   // Base white card with subtle border
