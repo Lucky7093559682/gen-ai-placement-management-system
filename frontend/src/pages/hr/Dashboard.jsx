@@ -2813,19 +2813,19 @@ useEffect(() => {
 // ...existing code...
                     {/* Offer Details Section */}
                     <div className="mt-8">
-                      <h2 className="text-2xl font-bold text-white mb-4">Offer Details</h2>
+                      <h2 className="text-2xl font-black text-blue-700 dark:text-white drop-shadow-lg mb-4">Offer Details</h2>
                       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                         {offers && offers.length > 0 && offers.map((offer) => (
                           <div key={offer.id} className="bg-slate-800/50 border border-white/10 rounded-xl p-6">
-                            <h3 className="text-xl font-black text-emerald-400 mb-2">{offer.candidateName}</h3>
-                            <p className="text-white text-base mb-1">Position: <span className="font-bold text-blue-300">{offer.position}</span></p>
-                            <p className="text-white text-base mb-1">Salary: <span className="font-bold text-emerald-300">{offer.salary}</span></p>
-                            <p className="text-white text-base mb-1">Equity: <span className="font-bold text-purple-300">{offer.equity}</span></p>
-                            <p className="text-white text-base mb-1">Bonus: <span className="font-bold text-amber-300">{offer.bonus}</span></p>
-                            <p className="text-white text-base mb-1">Status: <span className={`font-bold ${offer.status === 'Accepted' ? 'text-emerald-400' : offer.status === 'Rejected' ? 'text-red-400' : 'text-amber-400'}`}>{offer.status}</span></p>
-                            <p className="text-white text-base mb-1">Expiry Days: <span className="font-bold text-pink-300">{offer.expiryDays}</span></p>
-                            <p className="text-white text-base mb-1">Progress: <span className="font-bold text-blue-300">{offer.progress}%</span></p>
-                            <p className="text-white text-base mb-1">Approver: <span className="font-bold text-cyan-300">{offer.approver}</span></p>
+                            <h3 className="text-xl font-black text-blue-900 dark:text-emerald-400 drop-shadow-lg mb-2">{offer.candidateName}</h3>
+                            <p className="text-blue-900 dark:text-white text-base mb-1">Position: <span className="font-bold text-blue-700 dark:text-blue-300">{offer.position}</span></p>
+                            <p className="text-blue-900 dark:text-white text-base mb-1">Salary: <span className="font-bold text-emerald-700 dark:text-emerald-300">{offer.salary}</span></p>
+                            <p className="text-blue-900 dark:text-white text-base mb-1">Equity: <span className="font-bold text-purple-700 dark:text-purple-300">{offer.equity}</span></p>
+                            <p className="text-blue-900 dark:text-white text-base mb-1">Bonus: <span className="font-bold text-amber-700 dark:text-amber-300">{offer.bonus}</span></p>
+                            <p className="text-blue-900 dark:text-white text-base mb-1">Status: <span className={`font-bold ${offer.status === 'Accepted' ? 'text-emerald-700 dark:text-emerald-400' : offer.status === 'Rejected' ? 'text-red-700 dark:text-red-400' : 'text-amber-700 dark:text-amber-400'}`}>{offer.status}</span></p>
+                            <p className="text-blue-900 dark:text-white text-base mb-1">Expiry Days: <span className="font-bold text-pink-700 dark:text-pink-300">{offer.expiryDays}</span></p>
+                            <p className="text-blue-900 dark:text-white text-base mb-1">Progress: <span className="font-bold text-blue-700 dark:text-blue-300">{offer.progress}%</span></p>
+                            <p className="text-blue-900 dark:text-white text-base mb-1">Approver: <span className="font-bold text-cyan-700 dark:text-cyan-300">{offer.approver}</span></p>
                             <div className="mt-2">
                               <p className="text-xs text-slate-400 mb-1">Documents:</p>
                               <ul className="list-disc list-inside text-slate-200">
@@ -3099,7 +3099,7 @@ useEffect(() => {
             { id: 'interviews', label: 'Interviews', value: '8', change: '+3', icon: Calendar, color: 'text-amber-500', bg: 'bg-amber-500/10' },
             { id: 'offers', label: 'Offers', value: '4', change: '+1', icon: CheckCircle, color: 'text-emerald-500', bg: 'bg-emerald-500/10' },
           ].map((stat) => (
-            <div key={stat.id} className={`group ${isDark ? 'bg-slate-800/50 border-white/5 hover:border-white/15' : 'bg-white border-gray-200 hover:border-gray-300'} p-6 rounded-xl border backdrop-blur-sm transition-all hover:shadow-xl`}>
+            <div key={stat.id} className={`group ${isDark ? 'bg-slate-800/50 border-white/5 hover:border-white/15' : 'bg-white border-gray-900 hover:border-gray-900'} p-6 rounded-xl border backdrop-blur-sm transition-all hover:shadow-xl`}>
               <div className="flex justify-between items-start">
                 <div>
                   <p className={`${isDark ? 'text-slate-400' : 'text-gray-600'} text-sm font-medium`}>{stat.label}</p>
@@ -3336,8 +3336,8 @@ useEffect(() => {
     <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
       <div className="flex justify-between items-center mb-8">
         <div>
-          <h2 className="text-3xl font-bold text-white">Interviews</h2>
-          <p className="text-slate-400 mt-1">Manage and join interviews</p>
+          <h2 className="text-3xl font-black text-blue-700 dark:text-white drop-shadow-lg">Interviews</h2>
+          <p className="text-lg font-semibold text-blue-900 dark:text-slate-400 drop-shadow-sm mt-1">Manage and join interviews</p>
         </div>
         <button
           onClick={() => setShowScheduleInterviewModal(true)}
@@ -3362,62 +3362,65 @@ useEffect(() => {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm text-slate-300 mb-1">Candidate Name *</label>
+                <label className="block text-sm font-bold text-yellow-300 drop-shadow-lg mb-1">Candidate Name *</label>
                 <input
                   value={newInterview.candidateName}
                   onChange={e => setNewInterview(prev => ({ ...prev, candidateName: e.target.value }))}
-                  className="w-full p-3 rounded-xl bg-slate-800 border border-white/10 text-white"
+                  className="w-full p-3 rounded-xl bg-slate-800 border border-yellow-300/40 text-yellow-100 placeholder-yellow-300 font-extrabold drop-shadow-lg"
+                  placeholder="Enter candidate name"
                 />
               </div>
               <div>
-                <label className="block text-sm text-slate-300 mb-1">Position *</label>
+                <label className="block text-sm font-bold text-yellow-300 drop-shadow-lg mb-1">Position *</label>
                 <input
                   value={newInterview.position}
                   onChange={e => setNewInterview(prev => ({ ...prev, position: e.target.value }))}
-                  className="w-full p-3 rounded-xl bg-slate-800 border border-white/10 text-white"
+                  className="w-full p-3 rounded-xl bg-slate-800 border border-yellow-300/40 text-yellow-200 placeholder-yellow-400 font-bold drop-shadow-lg"
+                  placeholder="Enter position"
                 />
               </div>
               <div>
-                <label className="block text-sm text-slate-300 mb-1">Date *</label>
+                <label className="block text-sm font-bold text-yellow-300 drop-shadow-lg mb-1">Date *</label>
                 <input
                   type="date"
                   value={newInterview.date}
                   onChange={e => setNewInterview(prev => ({ ...prev, date: e.target.value }))}
-                  className="w-full p-3 rounded-xl bg-slate-800 border border-white/10 text-white"
+                  className="w-full p-3 rounded-xl bg-slate-800 border border-yellow-300/40 text-yellow-200 font-bold drop-shadow-lg"
                 />
               </div>
               <div>
-                <label className="block text-sm text-slate-300 mb-1">Start Time *</label>
+                <label className="block text-sm font-bold text-yellow-300 drop-shadow-lg mb-1">Start Time *</label>
                 <input
                   type="time"
                   value={newInterview.startTime}
                   onChange={e => setNewInterview(prev => ({ ...prev, startTime: e.target.value }))}
-                  className="w-full p-3 rounded-xl bg-slate-800 border border-white/10 text-white"
+                  className="w-full p-3 rounded-xl bg-slate-800 border border-yellow-300/40 text-yellow-200 font-bold drop-shadow-lg"
                 />
               </div>
               <div>
-                <label className="block text-sm text-slate-300 mb-1">End Time *</label>
+                <label className="block text-sm font-bold text-yellow-300 drop-shadow-lg mb-1">End Time *</label>
                 <input
                   type="time"
                   value={newInterview.endTime}
                   onChange={e => setNewInterview(prev => ({ ...prev, endTime: e.target.value }))}
-                  className="w-full p-3 rounded-xl bg-slate-800 border border-white/10 text-white"
+                  className="w-full p-3 rounded-xl bg-slate-800 border border-yellow-300/40 text-yellow-200 font-bold drop-shadow-lg"
                 />
               </div>
               <div>
-                <label className="block text-sm text-slate-300 mb-1">Location</label>
+                <label className="block text-sm font-bold text-yellow-300 drop-shadow-lg mb-1">Location</label>
                 <input
                   value={newInterview.location}
                   onChange={e => setNewInterview(prev => ({ ...prev, location: e.target.value }))}
-                  className="w-full p-3 rounded-xl bg-slate-800 border border-white/10 text-white"
+                  className="w-full p-3 rounded-xl bg-slate-800 border border-yellow-300/40 text-yellow-200 placeholder-yellow-400 font-bold drop-shadow-lg"
+                  placeholder="Enter location"
                 />
               </div>
               <div>
-                <label className="block text-sm text-slate-300 mb-1">Type</label>
+                <label className="block text-sm font-bold text-yellow-300 drop-shadow-lg mb-1">Type</label>
                 <select
                   value={newInterview.type}
                   onChange={e => setNewInterview(prev => ({ ...prev, type: e.target.value }))}
-                  className="w-full p-3 rounded-xl bg-slate-800 border border-white/10 text-white"
+                  className="w-full p-3 rounded-xl bg-slate-800 border border-yellow-300/40 text-yellow-200 font-bold drop-shadow-lg"
                 >
                   <option value="Virtual">Virtual</option>
                   <option value="In-person">In-person</option>
@@ -3461,14 +3464,14 @@ useEffect(() => {
       <div className="overflow-x-auto">
         <table className="w-full text-sm">
           <thead>
-            <tr className="bg-white/5 text-xs uppercase font-bold text-slate-300 tracking-wider">
-              <th className="px-6 py-5 text-left">Candidate</th>
-              <th className="px-6 py-5 text-left">Position</th>
-              <th className="px-6 py-5 text-left">Date</th>
-              <th className="px-6 py-5 text-left">Time</th>
-              <th className="px-6 py-5 text-left">Type</th>
-              <th className="px-6 py-5 text-left">Status</th>
-              <th className="px-6 py-5 text-left">Actions</th>
+            <tr className="bg-gradient-to-r from-blue-900 via-purple-900 to-pink-900 text-xs uppercase font-black text-yellow-300 tracking-wider drop-shadow-lg">
+              <th className="px-6 py-5 text-left text-yellow-300 drop-shadow-lg">Candidate</th>
+              <th className="px-6 py-5 text-left text-yellow-300 drop-shadow-lg">Position</th>
+              <th className="px-6 py-5 text-left text-yellow-300 drop-shadow-lg">Date</th>
+              <th className="px-6 py-5 text-left text-yellow-300 drop-shadow-lg">Time</th>
+              <th className="px-6 py-5 text-left text-yellow-300 drop-shadow-lg">Type</th>
+              <th className="px-6 py-5 text-left text-yellow-300 drop-shadow-lg">Status</th>
+              <th className="px-6 py-5 text-left text-yellow-300 drop-shadow-lg">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -3543,8 +3546,8 @@ useEffect(() => {
     <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
       <div className="flex justify-between items-center mb-8">
         <div>
-          <h2 className="text-3xl font-bold text-white">Offer Management</h2>
-          <p className="text-slate-400 mt-1">Track offer progress and approvals</p>
+          <h2 className="text-3xl font-black text-blue-700 dark:text-white drop-shadow-lg">Offer Management</h2>
+          <p className="text-lg font-semibold text-blue-900 dark:text-slate-400 drop-shadow-sm mt-1">Track offer progress and approvals</p>
         </div>
         <div className="flex gap-3">
           <button
@@ -3563,10 +3566,10 @@ useEffect(() => {
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-6">
           <div className="bg-slate-900 w-full max-w-3xl rounded-2xl p-6 border border-white/10 shadow-2xl">
             <div className="flex items-center justify-between mb-6">
-              <h3 className="text-2xl font-bold text-white">Create New Offer</h3>
+              <h3 className="text-2xl font-black text-blue-700 dark:text-white drop-shadow-lg">Create New Offer</h3>
               <button
                 onClick={() => setShowOfferModal(false)}
-                className="p-2 rounded-xl hover:bg-white/10 text-slate-300"
+                className="p-2 rounded-xl hover:bg-white/10 text-gray-900 "
               >
                 <X className="h-5 w-5" />
               </button>
@@ -3580,7 +3583,7 @@ useEffect(() => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm text-slate-300 mb-1">Candidate *</label>
+                <label className="block text-sm font-bold text-blue-700 dark:text-yellow-300 drop-shadow-lg mb-1">Candidate *</label>
                 <select
                   value={offerForm.studentUserId}
                   onChange={(e) => {
@@ -3589,7 +3592,7 @@ useEffect(() => {
                     const selectedEmail = selectedStudent?.email || selectedStudent?.user?.email || '';
                     setOfferForm((prev) => ({ ...prev, studentUserId: selectedId, candidateEmail: selectedEmail }));
                   }}
-                  className="w-full p-3 rounded-xl bg-slate-800 border border-white/10 text-white"
+                  className="w-full p-3 rounded-xl bg-slate-800 border border-blue-700/40 text-blue-900 dark:text-yellow-200 font-bold drop-shadow-lg"
                 >
                   <option value="">Select candidate</option>
                   {students.map((student) => (
@@ -3603,7 +3606,7 @@ useEffect(() => {
                 </select>
               </div>
               <div>
-                <label className="block text-sm text-slate-300 mb-1">Candidate Email (optional)</label>
+                <label className="block text-sm font-bold text-blue-700 dark:text-yellow-300 drop-shadow-lg mb-1">Candidate Email (optional)</label>
                 <input
                   type="email"
                   list="candidate-emails"
@@ -3618,7 +3621,7 @@ useEffect(() => {
                     }));
                   }}
                   placeholder="candidate@email.com"
-                  className="w-full p-3 rounded-xl bg-slate-800 border border-white/10 text-white"
+                  className="w-full p-3 rounded-xl bg-slate-800 border border-blue-700/40 text-white placeholder-white font-extrabold drop-shadow-xl"
                 />
                 <datalist id="candidate-emails">
                   {students
@@ -3630,35 +3633,35 @@ useEffect(() => {
                 </datalist>
               </div>
               <div>
-                <label className="block text-sm text-slate-300 mb-1">Company *</label>
+                <label className="block text-sm font-bold text-blue-700 dark:text-yellow-300 drop-shadow-lg mb-1">Company *</label>
                 <input
                   value={offerForm.companyName}
                   onChange={(e) => setOfferForm((prev) => ({ ...prev, companyName: e.target.value }))}
-                  className="w-full p-3 rounded-xl bg-slate-800 border border-white/10 text-white"
+                  className="w-full p-3 rounded-xl bg-slate-800 border border-blue-700/40 text-blue-900 dark:text-yellow-200 placeholder-blue-400 dark:placeholder-yellow-400 font-bold drop-shadow-lg"
                 />
               </div>
               <div>
-                <label className="block text-sm text-slate-300 mb-1">Role Title *</label>
+                <label className="block text-sm font-bold text-blue-700 dark:text-yellow-300 drop-shadow-lg mb-1">Role Title *</label>
                 <input
                   value={offerForm.roleTitle}
                   onChange={(e) => setOfferForm((prev) => ({ ...prev, roleTitle: e.target.value }))}
-                  className="w-full p-3 rounded-xl bg-slate-800 border border-white/10 text-white"
+                  className="w-full p-3 rounded-xl bg-slate-800 border border-blue-700/40 text-blue-900 dark:text-yellow-200 placeholder-blue-400 dark:placeholder-yellow-400 font-bold drop-shadow-lg"
                 />
               </div>
               <div>
-                <label className="block text-sm text-slate-300 mb-1">CTC</label>
+                <label className="block text-sm font-bold text-blue-700 dark:text-yellow-300 drop-shadow-lg mb-1">CTC</label>
                 <input
                   value={offerForm.ctc}
                   onChange={(e) => setOfferForm((prev) => ({ ...prev, ctc: e.target.value }))}
-                  className="w-full p-3 rounded-xl bg-slate-800 border border-white/10 text-white"
+                  className="w-full p-3 rounded-xl bg-slate-800 border border-blue-700/40 text-blue-900 dark:text-yellow-200 placeholder-blue-400 dark:placeholder-yellow-400 font-bold drop-shadow-lg"
                 />
               </div>
               <div>
-                <label className="block text-sm text-slate-300 mb-1">Offer Type</label>
+                <label className="block text-sm font-bold text-blue-700 dark:text-yellow-300 drop-shadow-lg mb-1">Offer Type</label>
                 <select
                   value={offerForm.offerType}
                   onChange={(e) => setOfferForm((prev) => ({ ...prev, offerType: e.target.value }))}
-                  className="w-full p-3 rounded-xl bg-slate-800 border border-white/10 text-white"
+                  className="w-full p-3 rounded-xl bg-slate-800 border border-blue-700/40 text-blue-900 dark:text-yellow-200 font-bold drop-shadow-lg"
                 >
                   <option value="full-time">Full-time</option>
                   <option value="internship">Internship</option>
@@ -3667,11 +3670,11 @@ useEffect(() => {
                 </select>
               </div>
               <div>
-                <label className="block text-sm text-slate-300 mb-1">Status</label>
+                <label className="block text-sm font-bold text-blue-700 dark:text-yellow-300 drop-shadow-lg mb-1">Status</label>
                 <select
                   value={offerForm.status}
                   onChange={(e) => setOfferForm((prev) => ({ ...prev, status: e.target.value }))}
-                  className="w-full p-3 rounded-xl bg-slate-800 border border-white/10 text-white"
+                  className="w-full p-3 rounded-xl bg-slate-800 border border-blue-700/40 text-blue-900 dark:text-yellow-200 font-bold drop-shadow-lg"
                 >
                   <option value="offered">Offered</option>
                   <option value="accepted">Accepted</option>
@@ -3680,21 +3683,21 @@ useEffect(() => {
                 </select>
               </div>
               <div>
-                <label className="block text-sm text-slate-300 mb-1">Result Date</label>
+                <label className="block text-sm font-bold text-blue-700 dark:text-yellow-300 drop-shadow-lg mb-1">Result Date</label>
                 <input
                   type="date"
                   value={offerForm.resultDate}
                   onChange={(e) => setOfferForm((prev) => ({ ...prev, resultDate: e.target.value }))}
-                  className="w-full p-3 rounded-xl bg-slate-800 border border-white/10 text-white"
+                  className="w-full p-3 rounded-xl bg-slate-800 border border-blue-700/40 text-blue-900 dark:text-yellow-200 font-bold drop-shadow-lg"
                 />
               </div>
               <div>
-                <label className="block text-sm text-slate-300 mb-1">Joining Date</label>
+                <label className="block text-sm font-bold text-blue-700 dark:text-yellow-300 drop-shadow-lg mb-1">Joining Date</label>
                 <input
                   type="date"
                   value={offerForm.joiningDate}
                   onChange={(e) => setOfferForm((prev) => ({ ...prev, joiningDate: e.target.value }))}
-                  className="w-full p-3 rounded-xl bg-slate-800 border border-white/10 text-white"
+                  className="w-full p-3 rounded-xl bg-slate-800 border border-blue-700/40 text-blue-900 dark:text-yellow-200 font-bold drop-shadow-lg"
                 />
               </div>
             </div>
@@ -3721,24 +3724,24 @@ useEffect(() => {
       <div className="overflow-x-auto">
         <table className="w-full text-sm">
           <thead>
-            <tr className="bg-white/5 text-xs uppercase font-bold text-slate-300 tracking-wider">
-              <th className="px-8 py-5 text-left">Candidate</th>
-              <th className="px-6 py-5 text-left">Role</th>
-              <th className="px-6 py-5 text-left">Compensation</th>
-              <th className="px-6 py-5 text-left">Status</th>
-              <th className="px-6 py-5 text-left">Approver</th>
-              <th className="px-6 py-5 text-left">Expires</th>
-              <th className="px-6 py-5 text-right">Progress</th>
-              <th className="px-6 py-5 text-right">Actions</th>
+            <tr className="bg-gradient-to-r from-blue-900 via-purple-900 to-pink-900 text-xs uppercase font-black text-blue-700 dark:text-yellow-300 tracking-wider drop-shadow-lg">
+              <th className="px-8 py-5 text-left text-blue-700 dark:text-yellow-300 drop-shadow-lg">Candidate</th>
+              <th className="px-6 py-5 text-left text-blue-700 dark:text-yellow-300 drop-shadow-lg">Role</th>
+              <th className="px-6 py-5 text-left text-blue-700 dark:text-yellow-300 drop-shadow-lg">Compensation</th>
+              <th className="px-6 py-5 text-left text-blue-700 dark:text-yellow-300 drop-shadow-lg">Status</th>
+              <th className="px-6 py-5 text-left text-blue-700 dark:text-yellow-300 drop-shadow-lg">Approver</th>
+              <th className="px-6 py-5 text-left text-blue-700 dark:text-yellow-300 drop-shadow-lg">Expires</th>
+              <th className="px-6 py-5 text-right text-blue-700 dark:text-yellow-300 drop-shadow-lg">Progress</th>
+              <th className="px-6 py-5 text-right text-blue-700 dark:text-yellow-300 drop-shadow-lg">Actions</th>
             </tr>
           </thead>
           <tbody>
             {offersSource.map((offer) => (
               <tr key={offer.id} className="border-b border-white/10 hover:bg-white/5 transition-all">
-                <td className="px-8 py-5 font-bold text-white">{offer.candidateName}</td>
-                <td className="px-6 py-5">{offer.position}</td>
-                <td className="px-6 py-5">{offer.salary} <span className="block text-xs text-slate-400">{offer.bonus}</span></td>
-                <td className="px-6 py-5 font-semibold">
+                <td className="px-8 py-5 font-bold text-blue-900 dark:text-white drop-shadow-lg">{offer.candidateName}</td>
+                <td className="px-6 py-5 text-blue-900 dark:text-white drop-shadow-lg">{offer.position}</td>
+                <td className="px-6 py-5 text-blue-900 dark:text-white drop-shadow-lg">{offer.salary} <span className="block text-xs text-blue-700 dark:text-slate-400">{offer.bonus}</span></td>
+                <td className="px-6 py-5 font-semibold text-blue-900 dark:text-white drop-shadow-lg">
                   <span className={`px-3 py-1 rounded-full text-xs font-bold border-2 inline-block ${
                     offer.status === 'Accepted' ? 'text-emerald-700 dark:text-emerald-300 bg-emerald-100 dark:bg-emerald-900/30 border-emerald-300 dark:border-emerald-500/50' :
                     offer.status === 'Rejected' ? 'text-red-700 dark:text-red-300 bg-red-100 dark:bg-red-900/30 border-red-300 dark:border-red-500/50' :
@@ -3748,9 +3751,9 @@ useEffect(() => {
                     {offer.status}
                   </span>
                 </td>
-                <td className="px-6 py-5">{offer.approver}</td>
-                <td className="px-6 py-5">{offer.expiryDays > 0 ? `${offer.expiryDays} days` : 'Expired'}</td>
-                <td className="px-6 py-5 text-right">
+                <td className="px-6 py-5 text-blue-900 dark:text-white drop-shadow-lg">{offer.approver}</td>
+                <td className="px-6 py-5 text-blue-900 dark:text-white drop-shadow-lg">{offer.expiryDays > 0 ? `${offer.expiryDays} days` : 'Expired'}</td>
+                <td className="px-6 py-5 text-right text-blue-900 dark:text-white drop-shadow-lg">
                   <div className="w-24 h-3 bg-white/10 rounded-full overflow-hidden">
                     <div className="h-full bg-blue-500 rounded-full" style={{ width: `${offer.progress}%` }} />
                   </div>
@@ -4624,8 +4627,8 @@ Generated by HR Dashboard - Placement Management System`;
     <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
       <div className="flex justify-between items-center mb-8">
         <div>
-          <h2 className="text-3xl font-bold text-white">Onboarding Management</h2>
-          <p className="text-slate-400 mt-1">Track onboarding progress for new hires</p>
+          <h2 className="text-3xl font-bold text-black dark:text-white drop-shadow-lg">Onboarding Management</h2>
+          <p className="text-gray-900 dark:text-slate-300 mt-1">Track onboarding progress for new hires</p>
         </div>
         <button
           onClick={openCreateOnboardingModal}
@@ -4637,35 +4640,35 @@ Generated by HR Dashboard - Placement Management System`;
       <div className="overflow-x-auto">
         <table className="w-full text-sm">
           <thead>
-            <tr className="bg-white/5 text-xs uppercase font-bold text-slate-300 tracking-wider">
-              <th className="px-8 py-5 text-left">Employee</th>
-              <th className="px-6 py-5 text-left">Position</th>
-              <th className="px-6 py-5 text-left">Department</th>
-              <th className="px-6 py-5 text-left">Join Date</th>
-              <th className="px-6 py-5 text-left">Buddy</th>
-              <th className="px-6 py-5 text-left">Progress</th>
-              <th className="px-6 py-5 text-left">Tasks</th>
-              <th className="px-6 py-5 text-left">Actions</th>
+            <tr className="bg-white/5 dark:bg-slate-900 text-xs uppercase font-bold text-gray-900 dark:text-yellow-300 tracking-wider drop-shadow-lg">
+              <th className="px-8 py-5 text-left text-gray-900 dark:text-yellow-300 drop-shadow-lg">Employee</th>
+              <th className="px-6 py-5 text-left text-gray-900 dark:text-yellow-300 drop-shadow-lg">Position</th>
+              <th className="px-6 py-5 text-left text-gray-900 dark:text-yellow-300 drop-shadow-lg">Department</th>
+              <th className="px-6 py-5 text-left text-gray-900 dark:text-yellow-300 drop-shadow-lg">Join Date</th>
+              <th className="px-6 py-5 text-left text-gray-900 dark:text-yellow-300 drop-shadow-lg">Buddy</th>
+              <th className="px-6 py-5 text-left text-gray-900 dark:text-yellow-300 drop-shadow-lg">Progress</th>
+              <th className="px-6 py-5 text-left text-gray-900 dark:text-yellow-300 drop-shadow-lg">Tasks</th>
+              <th className="px-6 py-5 text-left text-gray-900 dark:text-yellow-300 drop-shadow-lg">Actions</th>
             </tr>
           </thead>
           <tbody>
             {onboardingSource.map((onb) => (
-              <tr key={onb._id || onb.id} className="border-b border-white/10 hover:bg-white/5 transition-all">
-                <td className="px-8 py-5 font-bold text-white">{onb.employeeName}<div className="text-xs text-slate-400">{onb.email}</div></td>
-                <td className="px-6 py-5">{onb.position}</td>
-                <td className="px-6 py-5">{onb.department}</td>
-                <td className="px-6 py-5">{formatDateSafe(onb.joinDate)}</td>
-                <td className="px-6 py-5">{onb.buddy}</td>
+              <tr key={onb._id || onb.id} className="border-b border-white/10 hover:bg-white/5 dark:hover:bg-slate-800 transition-all">
+                <td className="px-8 py-5 font-bold text-gray-900 dark:text-white drop-shadow-lg">{onb.employeeName}<div className="text-xs text-slate-400 dark:text-blue-300">{onb.email}</div></td>
+                <td className="px-6 py-5 text-gray-900 dark:text-white drop-shadow-lg">{onb.position}</td>
+                <td className="px-6 py-5 text-gray-900 dark:text-white drop-shadow-lg">{onb.department}</td>
+                <td className="px-6 py-5 text-gray-900 dark:text-white drop-shadow-lg">{formatDateSafe(onb.joinDate)}</td>
+                <td className="px-6 py-5 text-gray-900 dark:text-white drop-shadow-lg">{onb.buddy}</td>
                 <td className="px-6 py-5">
-                  <div className="w-24 h-3 bg-white/10 rounded-full overflow-hidden">
+                  <div className="w-24 h-3 bg-white/10 dark:bg-slate-700 rounded-full overflow-hidden">
                     <div className="h-full bg-emerald-500 rounded-full" style={{ width: `${Number(onb.progress) || 0}%` }} />
                   </div>
-                  <span className="text-xs text-slate-400 ml-2">{Number(onb.progress) || 0}%</span>
+                  <span className="text-xs text-slate-400 dark:text-blue-300 ml-2">{Number(onb.progress) || 0}%</span>
                 </td>
                 <td className="px-6 py-5">
                   <ul className="space-y-1">
                     {(onb.tasks || []).map((task, i) => (
-                      <li key={i} className={`inline-flex items-center gap-1 px-2 py-1 rounded text-xs font-semibold mr-2 mb-1 ${task.status === 'done' ? 'bg-emerald-600/80 text-white' : task.status === 'in-progress' ? 'bg-amber-500/80 text-white' : 'bg-slate-700/80 text-slate-200'}`}>
+                      <li key={i} className={`inline-flex items-center gap-1 px-2 py-1 rounded text-xs font-semibold mr-2 mb-1 ${task.status === 'done' ? 'bg-emerald-600/80 text-white' : task.status === 'in-progress' ? 'bg-amber-500/80 text-white' : 'bg-slate-700/80 text-slate-200 dark:text-blue-200'}`}>
                         {task.name}
                       </li>
                     ))}
@@ -4697,7 +4700,7 @@ Generated by HR Dashboard - Placement Management System`;
                   setEditingOnboardingId(null);
                   setOnboardingError('');
                 }}
-                className="p-2 rounded-xl hover:bg-white/10 text-slate-300"
+                className="p-2 rounded-xl hover:bg-white/10 text-slate-900"
               >
                 <X className="h-5 w-5" />
               </button>
@@ -4711,77 +4714,77 @@ Generated by HR Dashboard - Placement Management System`;
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm text-gray-900 dark:text-white mb-1">Employee Name *</label>
+                <label className="block text-sm font-semibold text-blue-700 dark:text-yellow-300 drop-shadow-lg mb-1">Employee Name *</label>
                 <input
                   type="text"
                   value={onboardingForm.employeeName}
                   onChange={(event) => setOnboardingForm({ ...onboardingForm, employeeName: event.target.value })}
-                  className="w-full p-3 rounded-xl bg-slate-800 border border-white/10 text-white"
+                  className="w-full p-3 rounded-xl bg-white dark:bg-slate-800 border border-blue-700/40 dark:border-yellow-300/40 text-blue-900 dark:text-yellow-200 font-bold drop-shadow-lg placeholder-blue-400 dark:placeholder-yellow-400"
                 />
               </div>
               <div>
-                <label className="block text-sm text-gray-900 dark:text-slate-300 mb-1">Email</label>
+                <label className="block text-sm font-semibold text-blue-700 dark:text-yellow-300 drop-shadow-lg mb-1">Email</label>
                 <input
                   type="email"
                   value={onboardingForm.email}
                   onChange={(event) => setOnboardingForm({ ...onboardingForm, email: event.target.value })}
-                  className="w-full p-3 rounded-xl bg-slate-800 border border-white/10 text-white"
+                  className="w-full p-3 rounded-xl bg-white dark:bg-slate-800 border border-blue-700/40 dark:border-yellow-300/40 text-blue-900 dark:text-yellow-200 font-bold drop-shadow-lg placeholder-blue-400 dark:placeholder-yellow-400"
                 />
               </div>
               <div>
-                <label className="block text-sm text-gray-900 dark:text-slate-300 mb-1">Position *</label>
+                <label className="block text-sm font-semibold text-blue-700 dark:text-yellow-300 drop-shadow-lg mb-1">Position *</label>
                 <input
                   type="text"
                   value={onboardingForm.position}
                   onChange={(event) => setOnboardingForm({ ...onboardingForm, position: event.target.value })}
-                  className="w-full p-3 rounded-xl bg-slate-800 border border-white/10 text-white"
+                  className="w-full p-3 rounded-xl bg-white dark:bg-slate-800 border border-blue-700/40 dark:border-yellow-300/40 text-blue-900 dark:text-yellow-200 font-bold drop-shadow-lg placeholder-blue-400 dark:placeholder-yellow-400"
                 />
               </div>
               <div>
-                <label className="block text-sm text-gray-900 dark:text-slate-300 mb-1">Department</label>
+                <label className="block text-sm font-semibold text-blue-700 dark:text-yellow-300 drop-shadow-lg mb-1">Department</label>
                 <input
                   type="text"
                   value={onboardingForm.department}
                   onChange={(event) => setOnboardingForm({ ...onboardingForm, department: event.target.value })}
-                  className="w-full p-3 rounded-xl bg-slate-800 border border-white/10 text-white"
+                  className="w-full p-3 rounded-xl bg-white dark:bg-slate-800 border border-blue-700/40 dark:border-yellow-300/40 text-blue-900 dark:text-yellow-200 font-bold drop-shadow-lg placeholder-blue-400 dark:placeholder-yellow-400"
                 />
               </div>
               <div>
-                <label className="block text-sm text-slate-300 mb-1">Join Date</label>
+                <label className="block text-sm font-semibold text-blue-700 dark:text-yellow-300 drop-shadow-lg mb-1">Join Date</label>
                 <input
                   type="date"
                   value={onboardingForm.joinDate}
                   onChange={(event) => setOnboardingForm({ ...onboardingForm, joinDate: event.target.value })}
-                  className="w-full p-3 rounded-xl bg-slate-800 border border-white/10 text-white"
+                  className="w-full p-3 rounded-xl bg-white dark:bg-slate-800 border border-blue-700/40 dark:border-yellow-300/40 text-blue-900 dark:text-yellow-200 font-bold drop-shadow-lg placeholder-blue-400 dark:placeholder-yellow-400"
                 />
               </div>
               <div>
-                <label className="block text-sm text-slate-300 mb-1">Buddy</label>
+                <label className="block text-sm font-semibold text-blue-700 dark:text-yellow-300 drop-shadow-lg mb-1">Buddy</label>
                 <input
                   type="text"
                   value={onboardingForm.buddy}
                   onChange={(event) => setOnboardingForm({ ...onboardingForm, buddy: event.target.value })}
-                  className="w-full p-3 rounded-xl bg-slate-800 border border-white/10 text-white"
+                  className="w-full p-3 rounded-xl bg-white dark:bg-slate-800 border border-blue-700/40 dark:border-yellow-300/40 text-blue-900 dark:text-yellow-200 font-bold drop-shadow-lg placeholder-blue-400 dark:placeholder-yellow-400"
                 />
               </div>
               <div className="md:col-span-2">
-                <label className="block text-sm text-slate-300 mb-1">Progress (%)</label>
+                <label className="block text-sm font-semibold text-blue-700 dark:text-yellow-300 drop-shadow-lg mb-1">Progress (%)</label>
                 <input
                   type="number"
                   min="0"
                   max="100"
                   value={onboardingForm.progress}
                   onChange={(event) => setOnboardingForm({ ...onboardingForm, progress: event.target.value })}
-                  className="w-full p-3 rounded-xl bg-slate-800 border border-white/10 text-white"
+                  className="w-full p-3 rounded-xl bg-white dark:bg-slate-800 border border-blue-700/40 dark:border-yellow-300/40 text-blue-900 dark:text-yellow-200 font-bold drop-shadow-lg placeholder-blue-400 dark:placeholder-yellow-400"
                 />
               </div>
               <div className="md:col-span-2">
-                <label className="block text-sm text-slate-300 mb-1">Tasks (one task per line)</label>
+                <label className="block text-sm font-semibold text-blue-700 dark:text-yellow-300 drop-shadow-lg mb-1">Tasks (one task per line)</label>
                 <textarea
                   rows={5}
                   value={onboardingForm.tasksText}
                   onChange={(event) => setOnboardingForm({ ...onboardingForm, tasksText: event.target.value })}
-                  className="w-full p-3 rounded-xl bg-slate-800 border border-white/10 text-white"
+                  className="w-full p-3 rounded-xl bg-white dark:bg-slate-800 border border-blue-700/40 dark:border-yellow-300/40 text-blue-900 dark:text-yellow-200 font-bold drop-shadow-lg placeholder-blue-400 dark:placeholder-yellow-400"
                   placeholder={'NDA signed\nLaptop setup\nTeam introduction'}
                 />
               </div>
@@ -5108,7 +5111,7 @@ Generated by HR Dashboard - Placement Management System`;
 
               <div className={`rounded-2xl border p-4 ${isDark ? 'bg-slate-900/70 border-slate-700' : 'bg-white border-gray-200'}`}>
                 <h3 className="font-bold mb-2">Offer & Joining Snapshot</h3>
-                <ul className={`text-sm space-y-1 ${isDark ? 'text-slate-300' : 'text-gray-700'}`}>
+                <ul className={`text-sm space-y-1 ${isDark ? 'text-slate-900' : 'text-gray-900'}`}>
                   <li>Pending Offers: <strong>{pendingOffers}</strong></li>
                   <li>Accepted Offers: <strong>{acceptedOffers}</strong></li>
                   <li>Onboarding In Progress: <strong>{joiningInProgress}</strong></li>
@@ -5269,9 +5272,11 @@ Generated by HR Dashboard - Placement Management System`;
                   const apps = Number(job.applications || 0);
                   const score = views > 0 ? Math.min(100, Math.round((apps / views) * 1000)) : 0;
                   return (
-                    <div key={job._id || job.id} className={`text-xs p-2 rounded-lg border ${isDark ? 'border-slate-700 bg-slate-800/60' : 'border-gray-200 bg-gray-50'}`}>
-                      {(job.title || job.position || 'Role').slice(0, 24)}: <span className="font-bold text-emerald-500">{score}</span>/100
-                    </div>
+                    <>
+                      <div key={job._id || job.id} className={`text-xs p-2 rounded-lg border ${isDark ? 'border-slate-700 bg-slate-800/60' : 'border-gray-200 bg-gray-50'}`}>
+                        {(job.title || job.position || 'Role').slice(0, 24)}: <span className="font-bold text-emerald-500">{score}</span>/100
+                      </div>
+                    </>
                   );
                 })}
               </div>
@@ -6145,6 +6150,9 @@ Generated by HR Dashboard - Placement Management System`;
                       userName={profileForm.name}
                       onImageUpdate={(newAvatarUrl) => {
                         setProfileForm({...profileForm, avatar: newAvatarUrl});
+                        if (user) {
+                          user.avatar = newAvatarUrl;
+                        }
                       }}
                     />
                   </div>

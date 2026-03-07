@@ -2194,6 +2194,9 @@ const StudentDashboardPro = () => {
               onImageUpdate={(newAvatarUrl) => {
                 setProfileImage(newAvatarUrl);
                 handleEditChange('avatar', newAvatarUrl);
+                if (studentDetails) {
+                  studentDetails.avatar = newAvatarUrl;
+                }
               }}
             />
           </div>
