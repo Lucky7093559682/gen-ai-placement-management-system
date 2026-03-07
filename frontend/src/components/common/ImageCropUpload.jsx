@@ -73,8 +73,12 @@ const ImageCropUpload = ({ currentImage, onImageUpdate, userName = 'User' }) => 
       });
 
       if (response.data.success) {
-        // Update preview
-        const newAvatarUrl = response.data.avatar;
+        // Update preview with full URL if needed
+        let newAvatarUrl = response.data.avatar;
+        if (newAvatarUrl && newAvatarUrl.startsWith('/uploads/')) {
+          const apiBase = process.env.REACT_APP_API_BASE_URL || '';
+          newAvatarUrl = apiBase + newAvatarUrl;
+        }
         setPreview(newAvatarUrl);
         setIsOpen(false);
         setTempImage(null);
