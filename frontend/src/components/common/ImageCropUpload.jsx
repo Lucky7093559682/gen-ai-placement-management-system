@@ -93,11 +93,7 @@ const ImageCropUpload = ({ currentImage, onImageUpdate, userName = 'User' }) => 
         }
 
         alert('✅ Profile image updated successfully!');
-        
-        // Reload page to reflect changes
-        setTimeout(() => {
-          window.location.reload();
-        }, 500);
+        // No page reload; image will update via parent state
       }
     } catch (error) {
       console.error('Upload failed:', error);
