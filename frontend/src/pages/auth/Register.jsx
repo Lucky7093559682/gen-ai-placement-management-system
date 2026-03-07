@@ -576,7 +576,7 @@ export default function Register() {
             <div className="mb-8">
               <h1 className="text-3xl font-bold tracking-tight text-white">Create Account</h1>
               <div className="h-1 w-16 bg-blue-600 rounded-full mt-2" />
-              <p className="mt-3 text-sm text-blue-700 dark:text-blue-200 font-bold">
+              <p className="mt-3 text-sm text-white dark:text-blue-200 font-bold">
                 Enter your details to get started
               </p>
             </div>
@@ -612,7 +612,7 @@ export default function Register() {
 
               {/* NAME INPUT */}
               <div className="relative">
-                <label className="text-xs font-semibold uppercase mb-2 block text-white">
+                <label className="text-xs font-semibold uppercase mb-2 block text-white dark:text-blue-200">
                   Full Name
                 </label>
                 <input
