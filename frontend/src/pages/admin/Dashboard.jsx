@@ -1081,7 +1081,7 @@ const AdminDashboard = () => {
               <div className="flex flex-col items-center gap-4">
                 <div className="relative">
                   <img
-                    src={profileForm.avatar || `https://api.dicebear.com/7.x/avataaars/svg?seed=${user?.id || 'user'}`}
+                    src={profileForm.avatar && profileForm.avatar.startsWith('/uploads/') ? `${process.env.REACT_APP_API_BASE_URL || ''}${profileForm.avatar}` : profileForm.avatar || `https://api.dicebear.com/7.x/avataaars/svg?seed=${user?.id || 'user'}`}
                     alt={profileForm.name}
                     className="w-32 h-32 rounded-full object-cover border-4 border-green-500/20"
                   />
