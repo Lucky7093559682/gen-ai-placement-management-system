@@ -2189,7 +2189,7 @@ const StudentDashboardPro = () => {
           <label className={`text-sm font-bold ${colors.text.muted} uppercase mb-4 block`}>Profile Picture</label>
           <div className="flex justify-center">
             <ImageCropUpload
-              currentImage={profileImage || `https://api.dicebear.com/7.x/avataaars/svg?seed=${studentDetails.name}`}
+              currentImage={profileImage && profileImage.startsWith('/uploads/') ? `${process.env.REACT_APP_API_BASE_URL || ''}${profileImage}` : profileImage || `https://api.dicebear.com/7.x/avataaars/svg?seed=${studentDetails.name}`}
               userName={studentDetails.name}
               onImageUpdate={(newAvatarUrl) => {
                 setProfileImage(newAvatarUrl);
