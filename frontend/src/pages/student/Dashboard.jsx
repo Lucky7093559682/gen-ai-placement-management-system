@@ -2507,7 +2507,7 @@ const StudentDashboardPro = () => {
           <div className={`${isDark ? 'bg-slate-900' : 'bg-white'} p-6 rounded-2xl ${isDark ? 'border-indigo-500/30' : 'border-indigo-200'} border text-center min-w-[140px]`}>
             <p className={`text-3xl font-black text-emerald-400`}>{profileCompletionPercent}%</p>
             <p className={`text-[10px] ${colors.text.muted} font-bold uppercase tracking-widest`}>Profile Ready</p>
-            <button onClick={() => setCurrentView('settings')} className="mt-3 text-xs bg-indigo-600/20 text-indigo-400 px-3 py-1 rounded-full font-bold hover:bg-indigo-600 hover:text-white transition-all">Complete Profile</button>
+            <button onClick={() => setCurrentView('profile-update')} className="mt-3 text-xs bg-indigo-600/20 text-indigo-400 px-3 py-1 rounded-full font-bold hover:bg-indigo-600 hover:text-white transition-all">Complete Profile</button>
           </div>
         </div>
 
