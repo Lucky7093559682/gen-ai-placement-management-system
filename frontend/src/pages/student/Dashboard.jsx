@@ -340,8 +340,8 @@ const StudentDashboardPro = () => {
         setEditFormData(normalizedStudent);
         
         // Set profile image from student avatar or user avatar, fallback to generated
-        const avatarUrl = response.data.student?.avatar || user.avatar || `https://api.dicebear.com/7.x/avataaars/svg?seed=${user.name}`;
-        setProfileImage(avatarUrl);
+        const avatarRaw = response.data.student?.avatar || user.avatar || `https://api.dicebear.com/7.x/avataaars/svg?seed=${user.name}`;
+        setProfileImage(getAvatarUrl(avatarRaw));
         setLoading(false);
       } catch (error) {
         console.error("Error fetching student data:", error);

@@ -13,6 +13,14 @@ const roleImages = {
   admin: "https://img.freepik.com/premium-psd/businessman-with-documents-pointing-glasses-3d-isolated-transparent-background-png-psd_1130573-121202.jpg"
 };
 
+function getAvatarUrl(avatar) {
+  if (!avatar) return '';
+  if (avatar.startsWith('/uploads/')) {
+    return `${API_BASE_URL}${avatar}`;
+  }
+  return avatar;
+}
+
 export default function Register() {
   const backendBaseUrl = BACKEND_BASE_URL;
   const [role, setRole] = useState("student");

@@ -1,3 +1,11 @@
+// Utility to normalize avatar URL
+function getAvatarUrl(avatar) {
+  if (!avatar) return '';
+  if (avatar.startsWith('/uploads/')) {
+    return `${process.env.REACT_APP_API_BASE_URL || ''}${avatar}`;
+  }
+  return avatar;
+}
 import React, { useState, useEffect } from "react";
 import api from "../../utils/api";
 import ProfileSection from "../../components/common/ProfileSection";
@@ -1081,7 +1089,7 @@ const AdminDashboard = () => {
               <div className="flex flex-col items-center gap-4">
                 <div className="relative">
                   <img
-                    src={profileForm.avatar && profileForm.avatar.startsWith('/uploads/') ? `${process.env.REACT_APP_API_BASE_URL || ''}${profileForm.avatar}` : profileForm.avatar || `https://api.dicebear.com/7.x/avataaars/svg?seed=${user?.id || 'user'}`}
+                    src={getAvatarUrl(profileForm.avatar) || `https://api.dicebear.com/7.x/avataaars/svg?seed=${user?.id || 'user'}`}
                     alt={profileForm.name}
                     className="w-32 h-32 rounded-full object-cover border-4 border-green-500/20"
                   />
