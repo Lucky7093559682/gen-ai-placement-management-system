@@ -131,7 +131,7 @@ const ImageCropUpload = ({ currentImage, onImageUpdate, userName = 'User' }) => 
       <div className="flex flex-col items-center gap-6">
         <div className="relative group">
           <img
-            src={preview && preview.startsWith('/uploads/') ? `${process.env.REACT_APP_API_BASE_URL || ''}${preview}` : preview}
+            src={preview && preview.startsWith('/uploads/') ? `${import.meta.env.VITE_BACKEND_URL || ''}${preview}` : preview}
             alt={userName}
             className="w-40 h-40 rounded-full object-cover border-4 border-indigo-500 shadow-2xl"
           />
