@@ -31,7 +31,10 @@ const studentSchema = new mongoose.Schema({
   },
   phoneNumber: String,
   avatar: String,
-  resume: String,
+  assignedExams: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'InterviewExam'
+  }],
   resumeDraft: {
     type: mongoose.Schema.Types.Mixed,
     default: null

@@ -18,8 +18,23 @@ const Sidebar = () => {
               <span className="inline-block w-2 h-2 bg-blue-600 rounded-full mr-2"></span> HR Dashboard
             </Link>
             <Link to="/hr/jobs" className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-blue-200 dark:hover:bg-blue-800 transition">
-              {/* You may want to import Briefcase from lucide-react at the top */}
               <span className="inline-block w-2 h-2 bg-blue-600 rounded-full mr-2"></span> Jobs & Reqs
+            </Link>
+            <Link to="/hr/exams" className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-blue-200 dark:hover:bg-blue-800 transition">
+              <span className="inline-block w-2 h-2 bg-blue-600 rounded-full mr-2"></span> Exams (Connect to Student)
+            </Link>
+          </>
+        )}
+        {user.role === 'staff' && (
+          <>
+            <Link to="/staff" className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-blue-200 dark:hover:bg-blue-800 transition font-semibold bg-blue-200 dark:bg-blue-800">
+              <span className="inline-block w-2 h-2 bg-blue-600 rounded-full mr-2"></span> Staff Dashboard
+            </Link>
+            <Link to="/staff/applications" className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-blue-200 dark:hover:bg-blue-800 transition">
+              <span className="inline-block w-2 h-2 bg-blue-600 rounded-full mr-2"></span> Applications
+            </Link>
+            <Link to="/staff/exams" className="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-blue-200 dark:hover:bg-blue-800 transition">
+              <span className="inline-block w-2 h-2 bg-blue-600 rounded-full mr-2"></span> Exams (Connect to Student)
             </Link>
           </>
         )}

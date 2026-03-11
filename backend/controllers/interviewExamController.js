@@ -71,8 +71,18 @@ export const deleteExam = async (req, res) => {
 // Assign Exam to Candidate (Student)
 export const assignExamToCandidate = async (req, res) => {
   try {
-    // You can implement assignment logic here (e.g., add exam to student profile or create a new collection)
-    res.status(200).json({ success: true, message: 'Assignment endpoint placeholder' });
+      const { studentId } = req.body;
+      const examId = req.params.id;
+      const student = await Student.findById(studentId);
+      if (!student) {
+        return res.status(404).json({ success: false, message: 'Student not found' });
+      }
+      if (!student.assignedExams) student.assignedExams = [];
+      if (!student.assignedExams.includes(examId)) {
+        student.assignedExams.push(examId);
+        await student.save();
+      }
+      res.status(200).json({ success: true, message: 'Exam assigned to student', assignedExams: student.assignedExams });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
   }
@@ -81,8 +91,27 @@ export const assignExamToCandidate = async (req, res) => {
 // Student submits Interview Exam
 export const submitExam = async (req, res) => {
   try {
-    // You can implement submission logic here (e.g., save answers, mark as submitted)
-    res.status(200).json({ success: true, message: 'Submission endpoint placeholder' });
+      const examId = req.params.id;
+      const studentUserId = req.user.id;
+      const { answers } = req.body;
+      // Check if student is assigned this exam
+      const student = await Student.findOne({ user: studentUserId });
+      if (!student) {
+        return res.status(404).json({ success: false, message: 'Student not found' });
+      }
+      if (!student.assignedExams || !student.assignedExams.includes(examId)) {
+        return res.status(403).json({ success: false, message: 'Exam not assigned to this student' });
+      }
+      // Save submission
+      const ExamSubmission = (await import('../models/ExamSubmission.js')).default;
+      const submission = await ExamSubmission.create({
+        exam: examId,
+        studentUser: studentUserId,
+        answers,
+        status: 'submitted',
+        submittedAt: new Date()
+      });
+      res.status(200).json({ success: true, message: 'Exam submitted', submission });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
   }

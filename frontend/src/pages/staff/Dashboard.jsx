@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
+import ExamManager from './ExamManager';
 import VideoConference from '../../components/VideoConference';
 import jsPDF from 'jspdf';
 import StaffApplications from "./Applications";
@@ -484,6 +485,7 @@ const StaffDashboard = () => {
     { id: 'interview-ops', label: 'Interview Ops Board', icon: Calendar },
     { id: 'drive-ops', label: 'Drive Operations', icon: Building2 },
     { id: 'verification', label: 'KYC Verification', icon: UserCheck },
+    { id: 'exam-desk', label: 'Exam Desk', icon: BookOpen }, // Exam Desk for HR/Staff
     { id: 'comms-hub', label: 'Communication Hub', icon: MessageSquare },
     { id: 'resume-desk', label: 'Resume Review Desk', icon: FileText },
     { id: 'task-manager', label: 'Task Manager', icon: ClipboardList },
@@ -495,9 +497,10 @@ const StaffDashboard = () => {
     { id: 'analytics', label: 'Analytics', icon: AnalyticsIcon },
     { id: 'reports', label: 'Reports', icon: BarChart3 },
     { id: 'email', label: 'Email Center', icon: Mail },
-    { id: 'classes', label: 'Classes', icon: BookOpen }, // Add Classes menu item
+    { id: 'classes', label: 'Classes', icon: BookOpen },
     { id: 'theme', label: 'Theme', icon: SettingsIcon },
   ];
+
 
   // Theme Colors - Dynamic
   const colors = {
@@ -2491,49 +2494,59 @@ const StaffDashboard = () => {
   // Main Content Renderer
   const renderContent = () => {
     switch (currentView) {
-      case 'dashboard': return <DashboardHome />;
-      case 'profile': return renderProfile();
-      case 'all-students': return <StudentDirectory />;
-      case 'student-risk': return (
-        <div className="animate-in fade-in duration-500 space-y-6">
-          <div style={{ backgroundColor: currentColors.card, borderColor: currentColors.border }} className="p-8 rounded-[2.5rem] border">
-            <h2 style={{ color: currentColors.text }} className="text-3xl font-bold mb-2">Student Risk Queue</h2>
-            <p style={{ color: currentColors.textSecondary }} className="text-sm">Auto-prioritized students by placement risk score.</p>
-            {riskActionMessage && (
-              <p className={`mt-3 text-xs font-semibold ${riskActionMessage.type === 'error' ? 'text-red-400' : 'text-emerald-400'}`}>
-                {riskActionMessage.text}
-              </p>
-            )}
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-            {riskQueue.slice(0, 12).map((riskItem) => (
-              <div key={riskItem.id} style={{ backgroundColor: currentColors.card, borderColor: currentColors.border }} className="p-5 rounded-2xl border">
-                <div className="flex items-center justify-between mb-2">
-                  <p style={{ color: currentColors.text }} className="font-bold">{riskItem.name}</p>
-                  <span className={`text-xs font-bold px-2 py-1 rounded-full ${riskItem.priority === 'High' ? 'bg-red-500/15 text-red-400' : riskItem.priority === 'Medium' ? 'bg-amber-500/15 text-amber-400' : 'bg-emerald-500/15 text-emerald-400'}`}>{riskItem.priority}</span>
+      case 'dashboard':
+        return <DashboardHome />;
+      case 'profile':
+        return renderProfile();
+      case 'all-students':
+        return <StudentDirectory />;
+      case 'student-risk':
+        return (
+          <div className="animate-in fade-in duration-500 space-y-6">
+            <div style={{ backgroundColor: currentColors.card, borderColor: currentColors.border }} className="p-8 rounded-[2.5rem] border">
+              <h2 style={{ color: currentColors.text }} className="text-3xl font-bold mb-2">Student Risk Queue</h2>
+              <p style={{ color: currentColors.textSecondary }} className="text-sm">Auto-prioritized students by placement risk score.</p>
+              {riskActionMessage && (
+                <p className={`mt-3 text-xs font-semibold ${riskActionMessage.type === 'error' ? 'text-red-400' : 'text-emerald-400'}`}>
+                  {riskActionMessage.text}
+                </p>
+              )}
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+              {riskQueue.slice(0, 12).map((riskItem) => (
+                <div key={riskItem.id} style={{ backgroundColor: currentColors.card, borderColor: currentColors.border }} className="p-5 rounded-2xl border">
+                  <div className="flex items-center justify-between mb-2">
+                    <p style={{ color: currentColors.text }} className="font-bold">{riskItem.name}</p>
+                    <span className={`text-xs font-bold px-2 py-1 rounded-full ${riskItem.priority === 'High' ? 'bg-red-500/15 text-red-400' : riskItem.priority === 'Medium' ? 'bg-amber-500/15 text-amber-400' : 'bg-emerald-500/15 text-emerald-400'}`}>{riskItem.priority}</span>
+                  </div>
+                  <p style={{ color: currentColors.textSecondary }} className="text-xs mb-3">{riskItem.branch} • CGPA {riskItem.cgpa} • Attendance {riskItem.attendance}%</p>
+                  <p className="text-sm font-bold text-indigo-400 mb-3">Risk Score: {riskItem.riskScore}</p>
+                  {mentorAssignments[riskItem.id] && (
+                    <p className="text-xs text-emerald-400 mb-3">Mentor: {mentorAssignments[riskItem.id]}</p>
+                  )}
+                  <div className="flex gap-2">
+                    <button onClick={() => handleAssignMentor(riskItem)} className="px-3 py-2 bg-indigo-600 rounded-lg text-xs font-bold text-white hover:bg-indigo-500 transition-colors">
+                      {mentorAssignments[riskItem.id] ? 'Reassign Mentor' : 'Assign Mentor'}
+                    </button>
+                    <button
+                      onClick={() => handleSendRiskReminder(riskItem)}
+                      disabled={riskReminderLoadingId === riskItem.id}
+                      className="px-3 py-2 bg-emerald-600 rounded-lg text-xs font-bold text-white hover:bg-emerald-500 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+                    >
+                      {riskReminderLoadingId === riskItem.id ? 'Sending...' : 'Send Reminder'}
+                    </button>
+                  </div>
                 </div>
-                <p style={{ color: currentColors.textSecondary }} className="text-xs mb-3">{riskItem.branch} • CGPA {riskItem.cgpa} • Attendance {riskItem.attendance}%</p>
-                <p className="text-sm font-bold text-indigo-400 mb-3">Risk Score: {riskItem.riskScore}</p>
-                {mentorAssignments[riskItem.id] && (
-                  <p className="text-xs text-emerald-400 mb-3">Mentor: {mentorAssignments[riskItem.id]}</p>
-                )}
-                <div className="flex gap-2">
-                  <button onClick={() => handleAssignMentor(riskItem)} className="px-3 py-2 bg-indigo-600 rounded-lg text-xs font-bold text-white hover:bg-indigo-500 transition-colors">
-                    {mentorAssignments[riskItem.id] ? 'Reassign Mentor' : 'Assign Mentor'}
-                  </button>
-                  <button
-                    onClick={() => handleSendRiskReminder(riskItem)}
-                    disabled={riskReminderLoadingId === riskItem.id}
-                    className="px-3 py-2 bg-emerald-600 rounded-lg text-xs font-bold text-white hover:bg-emerald-500 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
-                  >
-                    {riskReminderLoadingId === riskItem.id ? 'Sending...' : 'Send Reminder'}
-                  </button>
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      );
+        );
+      case 'exam-desk':
+        return (
+          <div className="animate-in fade-in duration-500 space-y-8">
+            <ExamManager />
+          </div>
+        );
       case 'student-detail': return <StudentDetailView />;
       case 'video-interviews': return <VideoInterviewsView />;
       case 'interview-ops': return (

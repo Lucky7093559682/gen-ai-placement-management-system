@@ -30,6 +30,21 @@ const userSchema = new mongoose.Schema({
     type: String,
     trim: true
   },
+  department: {
+    type: String,
+    trim: true,
+    default: ''
+  },
+  studentRollNumber: {
+    type: String,
+    trim: true,
+    default: ''
+  },
+  employeeId: {
+    type: String,
+    trim: true,
+    default: ''
+  },
   // OTP fields for verification
   otp: {
     type: String,
@@ -58,64 +73,9 @@ const userSchema = new mongoose.Schema({
     type: Date,
     default: null
   },
-  department: {
-    type: String,
-    trim: true,
-    default: ''
-  },
-  studentRollNumber: {
-    type: String,
-    trim: true,
-    default: ''
-  },
-  employeeId: {
-    type: String,
-    trim: true,
-    default: ''
-  },
-  // OAuth provider info
   oauthProviders: {
     type: Object,
     default: {}
-  },
-  hrSettings: {
-    theme: {
-      type: String,
-      enum: ['light', 'dark', 'system'],
-      default: 'system'
-    },
-    config: {
-      autoResumeScreening: { type: Boolean, default: true },
-      aiInterviewAssistant: { type: Boolean, default: true },
-      autoArchiveOldJobs: { type: Boolean, default: true },
-      emailNotifications: { type: Boolean, default: true },
-      pushNotifications: { type: Boolean, default: true },
-      weeklyHiringReports: { type: Boolean, default: true },
-      securityAlerts: { type: Boolean, default: true },
-      twoFactorAuth: { type: Boolean, default: false },
-      apiKeyManagement: { type: Boolean, default: false }
-    },
-    updatedAt: {
-      type: Date,
-      default: Date.now
-    }
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now
-  }
-});
-
-// Hash password before saving
-userSchema.pre('save', async function(next) {
-  if (!this.isModified('password')) return next();
-  
-  try {
-    const salt = await bcrypt.genSalt(10);
-    this.password = await bcrypt.hash(this.password, salt);
-    next();
-  } catch (error) {
-    next(error);
   }
 });
 
